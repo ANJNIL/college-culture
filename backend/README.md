@@ -1,6 +1,6 @@
-# LIHAS Luxury Accessories — Backend API
+# college  culture Luxury Accessories — Backend API
 
-Backend service for **LIHAS (Beyond Ordinary)**, an ultra-premium men's jewellery & accessories e-commerce platform.
+Backend service for **college  culture (Beyond Ordinary)**, an ultra-premium men's jewellery & accessories e-commerce platform.
 
 ---
 
@@ -235,7 +235,7 @@ backend/
 │   ├── database/
 │   │   ├── supabase.py      # Supabase PostgREST async client & fallback
 │   │   ├── schema.sql       # Database table definitions & RLS
-│   │   └── seed_data.py     # Authentic LIHAS accessories catalog
+│   │   └── seed_data.py     # Authentic college  culture accessories catalog
 │   └── security/
 │       ├── auth.py          # Bcrypt hashing, JWT & admin role verification
 │       └── rate_limiter.py  # SlowAPI rate limiting configuration

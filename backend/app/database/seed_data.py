@@ -2,7 +2,7 @@ from typing import List, Dict, Any
 
 SEED_PRODUCTS: List[Dict[str, Any]] = [
     {
-        "id": "lihas-rng-01",
+        "id": "college  culture-rng-01",
         "name": "Pavé Cuban Curb Spinner Ring",
         "category": "Rings",
         "price": 399,
@@ -22,7 +22,7 @@ SEED_PRODUCTS: List[Dict[str, Any]] = [
         "created_at": "2026-09-01T00:00:00Z",
     },
     {
-        "id": "lihas-nck-01",
+        "id": "college  culture-nck-01",
         "name": "Greek Meander Gold Barrel Chain",
         "category": "Necklaces",
         "price": 499,
@@ -42,7 +42,7 @@ SEED_PRODUCTS: List[Dict[str, Any]] = [
         "created_at": "2026-09-01T00:00:00Z",
     },
     {
-        "id": "lihas-ear-01",
+        "id": "college  culture-ear-01",
         "name": "Midnight Onyx Halo Solitaire Stud",
         "category": "Earrings",
         "price": 399,
@@ -62,7 +62,7 @@ SEED_PRODUCTS: List[Dict[str, Any]] = [
         "created_at": "2026-09-01T00:00:00Z",
     },
     {
-        "id": "lihas-rng-02",
+        "id": "college  culture-rng-02",
         "name": "Matte Circuit Geometric Titanium Band",
         "category": "Rings",
         "price": 399,
@@ -82,7 +82,7 @@ SEED_PRODUCTS: List[Dict[str, Any]] = [
         "created_at": "2026-09-01T00:00:00Z",
     },
     {
-        "id": "lihas-nck-02",
+        "id": "college  culture-nck-02",
         "name": "Obsidian Spider Bead Necklace",
         "category": "Necklaces",
         "price": 549,
@@ -102,7 +102,7 @@ SEED_PRODUCTS: List[Dict[str, Any]] = [
         "created_at": "2026-09-01T00:00:00Z",
     },
     {
-        "id": "lihas-clp-01",
+        "id": "college  culture-clp-01",
         "name": "Brushed Steel Industrial Disc Ear Clip",
         "category": "Ear Clips",
         "price": 449,

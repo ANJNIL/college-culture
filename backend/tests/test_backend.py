@@ -59,7 +59,7 @@ def test_04_auth_flow():
     """4. Test authentication registration, login, and profile."""
     import uuid
     rand_email = f"customer_{uuid.uuid4().hex[:6]}@example.com"
-    pwd = "LihasPassword123!"
+    pwd = "college  culturePassword123!"
 
     # Register
     reg_res = client.post("/api/auth/register", json={
@@ -97,7 +97,7 @@ def test_05_cart_endpoints():
     add_res = client.post(
         "/api/cart/add",
         headers=headers,
-        json={"product_id": "lihas-rng-01", "selected_size": "US 9", "quantity": 1}
+        json={"product_id": "college  culture-rng-01", "selected_size": "US 9", "quantity": 1}
     )
     assert add_res.status_code == 200
 
@@ -110,14 +110,14 @@ def test_05_cart_endpoints():
 
     # Update quantity
     upd_res = client.patch(
-        "/api/cart/update?product_id=lihas-rng-01&selected_size=US 9&quantity=2",
+        "/api/cart/update?product_id=college  culture-rng-01&selected_size=US 9&quantity=2",
         headers=headers
     )
     assert upd_res.status_code == 200
 
     # Remove item
     rem_res = client.delete(
-        "/api/cart/remove?product_id=lihas-rng-01&selected_size=US 9",
+        "/api/cart/remove?product_id=college  culture-rng-01&selected_size=US 9",
         headers=headers
     )
     assert rem_res.status_code == 200
@@ -132,7 +132,7 @@ def test_06_wishlist_endpoints():
     tog_res = client.post(
         "/api/wishlist/toggle",
         headers=headers,
-        json={"product_id": "lihas-nck-01"}
+        json={"product_id": "college  culture-nck-01"}
     )
     assert tog_res.status_code == 200
     assert tog_res.json()["is_saved"] is True
@@ -141,13 +141,13 @@ def test_06_wishlist_endpoints():
     get_res = client.get("/api/wishlist", headers=headers)
     assert get_res.status_code == 200
     data = get_res.json()
-    assert "lihas-nck-01" in data["product_ids"]
+    assert "college  culture-nck-01" in data["product_ids"]
 
     # Toggle remove
     tog_res2 = client.post(
         "/api/wishlist/toggle",
         headers=headers,
-        json={"product_id": "lihas-nck-01"}
+        json={"product_id": "college  culture-nck-01"}
     )
     assert tog_res2.status_code == 200
     assert tog_res2.json()["is_saved"] is False
@@ -169,13 +169,13 @@ def test_07_gemini_ai_endpoints():
     assert len(rec_data["recommended_products"]) > 0
 
     # Real products constraint verification:
-    valid_ids = {"lihas-rng-01", "lihas-nck-01", "lihas-ear-01", "lihas-rng-02", "lihas-nck-02", "lihas-clp-01"}
+    valid_ids = {"college  culture-rng-01", "college  culture-nck-01", "college  culture-ear-01", "college  culture-rng-02", "college  culture-nck-02", "college  culture-clp-01"}
     for p in rec_data["recommended_products"]:
         assert p["id"] in valid_ids, f"Gemini recommended hallucinated product: {p['id']}"
 
     # Product Description
     desc_res = client.post("/api/ai/product-description", json={
-        "product_id": "lihas-rng-01"
+        "product_id": "college  culture-rng-01"
     })
     assert desc_res.status_code == 200
     desc_data = desc_res.json()
@@ -195,7 +195,7 @@ def test_08_payment_order_and_verification():
     """8. Test Razorpay payment order creation and signature verification."""
     pay_order_res = client.post("/api/payment/create-order", json={
         "items": [
-            {"product_id": "lihas-rng-01", "selected_size": "US 9", "quantity": 1}
+            {"product_id": "college  culture-rng-01", "selected_size": "US 9", "quantity": 1}
         ],
         "shipping_address": {
             "first_name": "Dev",
@@ -263,12 +263,12 @@ def test_10_config_status_endpoint_security():
     assert anon_res.status_code == 401, f"Expected 401 Unauthorized, got {anon_res.status_code}"
 
     # 2. Customer role access must be forbidden
-    customer_token = create_access_token({"sub": "cust_123", "email": "cust@lihas.com", "role": "customer"})
+    customer_token = create_access_token({"sub": "cust_123", "email": "cust@college  culture.com", "role": "customer"})
     cust_res = client.get("/api/config/status", headers={"Authorization": f"Bearer {customer_token}"})
     assert cust_res.status_code == 403, f"Expected 403 Forbidden, got {cust_res.status_code}"
 
     # 3. Admin role access must succeed
-    admin_token = create_access_token({"sub": "admin_001", "email": "admin@lihas.com", "role": "admin"})
+    admin_token = create_access_token({"sub": "admin_001", "email": "admin@college  culture.com", "role": "admin"})
     admin_res = client.get("/api/config/status", headers={"Authorization": f"Bearer {admin_token}"})
     assert admin_res.status_code == 200, f"Expected 200 OK, got {admin_res.status_code}"
     

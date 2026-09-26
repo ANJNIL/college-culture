@@ -64,7 +64,7 @@ class Settings(BaseSettings):
     FIREBASE_PRIVATE_KEY: str = ""
 
     # 🌐 APPLICATION & AUTHENTICATION
-    JWT_SECRET: str = "LIHAS_SUPER_SECURE_JWT_SECRET_KEY"
+    JWT_SECRET: str = "college  culture_SUPER_SECURE_JWT_SECRET_KEY"
     JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
     FRONTEND_URL: str = "http://localhost:3000"

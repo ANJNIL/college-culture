@@ -42,7 +42,7 @@ async def create_payment_order(
         notes={
             "user_id": current_user["id"],
             "items_count": str(len(validated_items)),
-            "platform": "LIHAS Luxury Accessories"
+            "platform": "college  culture Luxury Accessories"
         }
     )
 

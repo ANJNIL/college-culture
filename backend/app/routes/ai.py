@@ -19,7 +19,7 @@ router = APIRouter(prefix="/api/ai", tags=["AI Stylist"])
 async def get_style_recommendation(request: Request, body: StyleRecommendationRequest):
     """
     Generate personalized men's accessory and outfit recommendations.
-    Strictly restricted to REAL accessories in the LIHAS database.
+    Strictly restricted to REAL accessories in the college  culture database.
     """
     catalog = await product_service.get_all_products()
     recommendation = await gemini_service.get_style_recommendations(

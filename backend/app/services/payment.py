@@ -36,7 +36,7 @@ class RazorpayPaymentService:
             "amount": amount_in_paise,
             "currency": "INR",
             "receipt": receipt,
-            "notes": notes or {"brand": "LIHAS Luxury Accessories"},
+            "notes": notes or {"brand": "college  culture Luxury Accessories"},
             "payment_capture": 1
         }
         try:

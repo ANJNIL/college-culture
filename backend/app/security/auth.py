@@ -100,7 +100,7 @@ async def get_optional_current_user(
             pass
 
     # Extract guest ID from header or generate client fingerprint
-    guest_id = request.headers.get("x-guest-id") or request.cookies.get("lihas_guest_id")
+    guest_id = request.headers.get("x-guest-id") or request.cookies.get("college  culture_guest_id")
     if not guest_id:
         # Client IP fallback for consistent guest carting
         client_ip = request.client.host if request.client else "unknown_client"
@@ -108,7 +108,7 @@ async def get_optional_current_user(
 
     return {
         "id": guest_id,
-        "email": f"{guest_id}@guest.lihas.com",
+        "email": f"{guest_id}@guest.college  culture.com",
         "full_name": "Guest Customer",
         "role": "guest",
         "is_guest": True,

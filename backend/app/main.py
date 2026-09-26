@@ -20,20 +20,21 @@ from app.routes import (
     config_router,
     unstop_router,
 )
+from fastapi.middleware.cors import CORSMiddleware
 
 # Configure secure logging without leaking credentials
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
 )
-logger = logging.getLogger("lihas_backend")
+logger = logging.getLogger("college  culture_backend")
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup: Display integration status safely without exposing secrets
     settings.log_configuration_status(logger)
-    logger.info("Initializing LIHAS Luxury Accessories Backend...")
+    logger.info("Initializing college  culture Luxury Accessories Backend...")
     logger.info(f"Environment: {settings.ENVIRONMENT}")
     logger.info(f"Allowed CORS Origins: {settings.allowed_cors_origins}")
     try:
@@ -45,12 +46,12 @@ async def lifespan(app: FastAPI):
     except Exception:
         logger.info("Catalog fallback active for local resilience.")
     yield
-    logger.info("Shutting down LIHAS backend.")
+    logger.info("Shutting down college  culture backend.")
 
 
 app = FastAPI(
-    title="LIHAS Luxury Accessories API",
-    description="Backend API for LIHAS — Premium Men's Accessories, Powered by Gemini AI & Razorpay",
+    title="College Culture API",
+    description="Backend API for College Culture - Social Media Platform",
     version="1.0.0",
     lifespan=lifespan,
     docs_url="/docs",
@@ -65,9 +66,9 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 # Strictly restricts origins to allowed origins defined in settings
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.allowed_cors_origins,
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["*"]
 )
@@ -94,7 +95,7 @@ async def health_check():
 @app.get("/", tags=["System"])
 async def root():
     return {
-        "brand": "LIHAS",
+        "brand": "college  culture",
         "tagline": "Beyond Ordinary | Men's Jewellery",
         "status": "online",
         "version": "1.0.0"

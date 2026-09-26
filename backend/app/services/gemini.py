@@ -12,8 +12,8 @@ from app.schemas.ai import (
     ChatMessage
 )
 
-SYSTEM_STYLIST_INSTRUCTION = """You are the Premier Personal Stylist for LIHAS (Beyond Ordinary) — India's premier luxury men's accessories label.
-LIHAS crafts anti-tarnish, sweatproof, and waterproof jewellery from 316L surgical-grade stainless steel, PVD titanium, and genuine natural minerals (jet onyx, zircons, 18K champagne gold dips).
+SYSTEM_STYLIST_INSTRUCTION = """You are the Premier Personal Stylist for college  culture (Beyond Ordinary) — India's premier luxury men's accessories label.
+college  culture crafts anti-tarnish, sweatproof, and waterproof jewellery from 316L surgical-grade stainless steel, PVD titanium, and genuine natural minerals (jet onyx, zircons, 18K champagne gold dips).
 
 CRITICAL SECURITY AND BRAND INTEGRITY RULES:
 1. ONLY recommend products that exist in the PROVIDED CATALOG.
@@ -62,13 +62,13 @@ class GeminiAIService:
         user_prompt: Optional[str],
         catalog: List[Product],
     ) -> StyleRecommendationResponse:
-        """Generate tailored accessory recommendations based on real LIHAS products."""
+        """Generate tailored accessory recommendations based on real college  culture products."""
         catalog_text = self._format_catalog_prompt(catalog)
         catalog_ids = {p.id for p in catalog}
 
         prompt = f"""{SYSTEM_STYLIST_INSTRUCTION}
 
-REAL LIHAS PRODUCT CATALOG:
+REAL college  culture PRODUCT CATALOG:
 {catalog_text}
 
 CLIENT REQUEST:
@@ -135,7 +135,7 @@ Respond in valid JSON format ONLY with this schema:
         tone: Optional[str] = "editorial luxury",
     ) -> ProductDescriptionResponse:
         """Generate high-converting luxury editorial copy for accessories."""
-        prompt = f"""You are the Creative Director and Copywriter for LIHAS, an ultra-premium men's jewellery brand.
+        prompt = f"""You are the Creative Director and Copywriter for college  culture, an ultra-premium men's jewellery brand.
 Create rich, evocative product copy for:
 - Product Name: {product_name or "Signature Accessory"}
 - Category: {category or "Men's Jewellery"}
@@ -188,7 +188,7 @@ Respond in valid JSON ONLY with this schema:
 
         prompt = f"""{SYSTEM_STYLIST_INSTRUCTION}
 
-REAL LIHAS PRODUCT CATALOG:
+REAL college  culture PRODUCT CATALOG:
 {catalog_text}
 
 PAST CONVERSATION:
@@ -210,7 +210,7 @@ INSTRUCTIONS:
                 model=self.model_name,
                 contents=prompt
             )
-            raw_text = response.text.strip() if response and response.text else "I am here to help you style your LIHAS pieces."
+            raw_text = response.text.strip() if response and response.text else "I am here to help you style your college  culture pieces."
 
             # Parse out any trailing JSON block
             product_ids = []
@@ -237,7 +237,7 @@ INSTRUCTIONS:
             )
         except Exception:
             return StyleChatResponse(
-                reply="LIHAS accessories are designed for effortless versatility. Whether you prefer the kinetic pavé spinner ring or the architectural onyx pieces, they pair seamlessly with dark neutrals and relaxed tailoring.",
+                reply="college  culture accessories are designed for effortless versatility. Whether you prefer the kinetic pavé spinner ring or the architectural onyx pieces, they pair seamlessly with dark neutrals and relaxed tailoring.",
                 suggested_products=catalog[:2]
             )
 

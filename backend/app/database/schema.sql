@@ -1,5 +1,5 @@
 -- =====================================================================
--- LIHAS LUXURY ACCESSORIES - SUPABASE POSTGRESQL SCHEMA
+-- college  culture LUXURY ACCESSORIES - SUPABASE POSTGRESQL SCHEMA
 -- Execute this script in the Supabase SQL Editor:
 -- Dashboard -> SQL Editor -> New Query -> Run
 -- =====================================================================

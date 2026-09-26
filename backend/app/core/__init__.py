@@ -1,1 +1,1 @@
-"""Core system modules for LIHAS Backend."""
+"""Core system modules for college  culture Backend."""

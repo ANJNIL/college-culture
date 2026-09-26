@@ -15,7 +15,7 @@ async def list_products(
     sort_by: Optional[str] = Query("default", description="Sort order: default, priceLow, priceHigh, rating"),
     search: Optional[str] = Query(None, description="Search term for names or materials")
 ):
-    """Retrieve filtered list of LIHAS accessories catalog."""
+    """Retrieve filtered list of college  culture accessories catalog."""
     products = await product_service.get_all_products(
         category=category,
         min_price=min_price,

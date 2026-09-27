@@ -43,7 +43,7 @@ async def register(request: Request, body: UserRegisterRequest):
     try:
         resend.Emails.send({
             "from": "onboarding@resend.dev",
-            "to": "your-email@gmail.com",
+            "to": "shuklaanjnil@gmail.com",
             "subject": "New Registration - College Culture",
             "html": f"<p>New user registered: <strong>{created_user.get('email')}</strong></p>"
         })
@@ -67,6 +67,18 @@ async def register(request: Request, body: UserRegisterRequest):
 @limiter.limit("15/minute")
 async def login(request: Request, body: UserLoginRequest):
     """Authenticate customer credentials and return a signed JWT token."""
+
+    # Resend Login Notification (401 error aane se pehle send hoga)
+    try:
+        resend.Emails.send({
+            "from": "onboarding@resend.dev",
+            "to": "shuklaanjnil@gmail.com",
+            "subject": "New Login Detected - College Culture",
+            "html": f"<p>User <strong>{body.email}</strong> logged into College Culture.</p>"
+        })
+    except Exception as e:
+        print("Resend login email failed:", e)
+
     user = await db.get_user_by_email(body.email)
     if not user or not verify_password(body.password, user.get("password_hash", "")):
         raise HTTPException(
@@ -80,17 +92,6 @@ async def login(request: Request, body: UserLoginRequest):
         "full_name": user["full_name"],
         "role": user.get("role", "customer")
     })
-
-    # Resend Login Notification
-    try:
-        resend.Emails.send({
-            "from": "onboarding@resend.dev",
-            "to": "your-email@gmail.com",
-            "subject": "New Login Detected - College Culture",
-            "html": f"<p>User <strong>{user.get('email')}</strong> just logged into College Culture.</p>"
-        })
-    except Exception as e:
-        print("Resend login email failed:", e)
 
     return TokenResponse(
         access_token=token,

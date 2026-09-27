@@ -3,6 +3,10 @@ from app.schemas.auth import UserRegisterRequest, UserLoginRequest, TokenRespons
 from app.security.auth import hash_password, verify_password, create_access_token, get_current_user
 from app.security.rate_limiter import limiter
 from app.database.supabase import db
+import os
+import resend
+
+resend.api_key = os.getenv("RESEND_API_KEY")
 
 router = APIRouter(prefix="/api/auth", tags=["Authentication"])
 
@@ -35,6 +39,17 @@ async def register(request: Request, body: UserRegisterRequest):
         "role": created_user["role"]
     })
 
+    # Resend Register Notification
+    try:
+        resend.Emails.send({
+            "from": "onboarding@resend.dev",
+            "to": "your-email@gmail.com",
+            "subject": "New Registration - College Culture",
+            "html": f"<p>New user registered: <strong>{created_user.get('email')}</strong></p>"
+        })
+    except Exception as e:
+        print("Resend register email failed:", e)
+
     return TokenResponse(
         access_token=token,
         user=UserProfileResponse(
@@ -65,6 +80,17 @@ async def login(request: Request, body: UserLoginRequest):
         "full_name": user["full_name"],
         "role": user.get("role", "customer")
     })
+
+    # Resend Login Notification
+    try:
+        resend.Emails.send({
+            "from": "onboarding@resend.dev",
+            "to": "your-email@gmail.com",
+            "subject": "New Login Detected - College Culture",
+            "html": f"<p>User <strong>{user.get('email')}</strong> just logged into College Culture.</p>"
+        })
+    except Exception as e:
+        print("Resend login email failed:", e)
 
     return TokenResponse(
         access_token=token,
